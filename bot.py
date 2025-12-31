@@ -914,80 +914,7 @@ async def admin_logs(interaction: discord.Interaction, target_user: discord.User
     embed.set_footer(text=WATERMARK, icon_url=bot.user.avatar.url if bot.user.avatar else None)
     await interaction.response.send_message(embed=embed)
 
-# Show bot & developer information
-@bot.tree.command(name="about", description="Show bot & developer information")
-async def about(interaction: discord.Interaction):
-    embed = discord.Embed(
-        title="🤖 VPS Manager Bot • About",
-        description=(
-            "**A powerful, fast, and user-friendly Discord bot for managing VPS servers and Docker containers.**\n\n"
-            "Designed with **speed**, **stability**, **security**, and **simplicity** in mind 🚀🔒\n"
-            "Perfect for server admins, developers, and hosting enthusiasts!"
-        ),
-        color=discord.Color.from_rgb(88, 101, 242)  # A modern blurple shade
-    )
 
-    # Bot Details
-    embed.add_field(
-        name="📌 Bot Information",
-        value=(
-            "➜ **Name:** VPS Manager Bot\n"
-            "➜ **Version:** v1.0\n"
-            "➜ **Framework:** Python • discord.py\n"
-            "➜ **Uptime Status:** 🟢 Online & Stable\n"
-            "➜ **Features:** VPS control, Docker management, real-time monitoring, and more!"
-        ),
-        inline=False
-    )
-
-    # Developer Section with more details
-    embed.add_field(
-        name="👨‍💻 Meet the Developer • Hopingboyz",
-        value=(
-            "**Hopingboyz** is a passionate **Full-Stack Developer** and **DevOps Enthusiast** from India 🇮🇳\n\n"
-            "🔹 **Specialties:**\n"
-            "   • VPS & Server Management\n"
-            "   • Docker & Containerization\n"
-            "   • Advanced Control Panels\n"
-            "   • QEMU Virtual Machines\n"
-            "   • High-Performance Discord Bots\n"
-            "   • Minecraft Server Hosting & Optimization\n\n"
-            "Focused on delivering **clean code**, **optimized performance**, **robust security**, and **beautiful UI/UX** 💎✨"
-        ),
-        inline=False
-    )
-
-    # Social Links
-    embed.add_field(
-        name="🔗 Connect with Hopingboyz",
-        value=(
-            "📺 **YouTube:** [Watch Tutorials & Guides](https://www.youtube.com/@Hopingboyz)\n"
-            "💻 **GitHub:** [View Projects & Scripts](https://github.com/Hopingboyz)\n"
-            "📸 **Instagram:** [Follow for Updates](https://instagram.com/hopingboyz)"
-        ),
-        inline=False
-    )
-
-    # Fun Fact / Extra Touch
-    embed.add_field(
-        name="🎮 Fun Fact",
-        value=(
-            "Hopingboyz is also a big **Minecraft** fan! Many tutorials cover free/paid hosting, "
-            "server setups, web stores, and getting powerful VPS resources for gaming servers 🟩"
-        ),
-        inline=False
-    )
-
-    embed.set_footer(
-        text="Built with ❤️ and ☕ by Hopingboyz | Thank you for using VPS Manager Bot!",
-        icon_url="https://i.imgur.com/qziVuLk.jpeg"  # Suggested: A profile-related image from YouTube
-    )
-    embed.set_thumbnail(
-        url="https://i.imgur.com/BIbPOCV.jpeg"  # A cool Discord bot / VPS themed thumbnail for better visuals
-    )
-    embed.timestamp = discord.utils.utcnow()
-
-    await interaction.response.send_message(embed=embed, ephemeral=True)
 
 @bot.tree.command(name="logs", description="View recent logs for your VPS")
 @app_commands.describe(vps_identifier="VPS ID or Name", lines="Number of lines (default 50)")
@@ -1176,7 +1103,6 @@ async def help_cmd(interaction: discord.Interaction):
     embed.add_field(name="/regen-ssh [vps_id]", value="Regenerate SSH session", inline=False)
     embed.add_field(name="/reinstall <vps_id> [os]", value="Reinstall VPS with new OS (keeps resources)", inline=False)
     embed.add_field(name="/remove <vps_id>", value="Remove a VPS", inline=False)
-    embed.add_field(name="/about", value="Show bot & developer information", inline=False)
     embed.add_field(name="/logs <vps_id> [lines]", value="View recent VPS logs", inline=False)
     if ADMIN_ID > 0:
         embed.add_field(name="**Admin Commands**", value="", inline=False)
@@ -1239,4 +1165,5 @@ if __name__ == "__main__":
     if not TOKEN:
         logger.error("TOKEN not set in .env")
         sys.exit(1)
+
     bot.run(TOKEN)
